@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="News.Views.LoginPage" xmlns:local="clr-namespace:News;assembly=News" >
+    <ContentPage.Resources>
+       <ResourceDictionary>
+            <local:BooleanToStringConverter x:Key="BooleanToStringConverter"/>
+       </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand">
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
+                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                     <Entry x:Name="UsernameEntry" Placeholder="Username" HeightRequest="44" HorizontalOptions="Center" WidthRequest="300">
+                        <Entry.Behaviors>
+                            <local:EmailValidator x:Name="EmailValidator" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Image Source="{Binding Source={x:Reference EmailValidator}, Path=IsValid,Converter={StaticResource BooleanToStringConverter}}" HeightRequest="30"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                     <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="true" HeightRequest="44" HorizontalOptions="Center" WidthRequest="300">
+                        <Entry.Behaviors>
+                           <local:PasswordValidator x:Name="PasswordValidator" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Image Source="{Binding Source={x:Reference PasswordValidator}, Path=IsValid,Converter={StaticResource BooleanToStringConverter}}" HeightRequest="30"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                     <Button x:Name="LoginButton" Text="Login" FontSize="18"  HorizontalOptions="Center" WidthRequest="300" BackgroundColor="#3dc054" BorderRadius="10"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
