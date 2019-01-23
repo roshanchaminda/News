@@ -7,28 +7,45 @@
        </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="CenterAndExpand">
-            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
-                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
-                     <Entry x:Name="UsernameEntry" Placeholder="Username" HeightRequest="44" HorizontalOptions="Center" WidthRequest="300">
-                        <Entry.Behaviors>
-                            <local:EmailValidator x:Name="EmailValidator" />
-                        </Entry.Behaviors>
-                    </Entry>
-                    <Image Source="{Binding Source={x:Reference EmailValidator}, Path=IsValid,Converter={StaticResource BooleanToStringConverter}}" HeightRequest="30"/>
+        <ScrollView>
+            <AbsoluteLayout BackgroundColor="#B2ACAC" x:Name="outerAb">
+                <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" >
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Margin="0,150,0,0" >
+                        <Image Source="news_logo.png" WidthRequest="300"  />
+                    </StackLayout>
+                    <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Padding="0,0,0,70">
+                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                             <Entry x:Name="UsernameEntry" Placeholder="Username" Text="{Binding CurrentUser.UserName}" HeightRequest="44" HorizontalOptions="Center" WidthRequest="300">
+                                <Entry.Behaviors>
+                                    <local:EmailValidator x:Name="EmailValidator" />
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Image Source="{Binding Source={x:Reference EmailValidator}, Path=IsValid,Converter={StaticResource BooleanToStringConverter}}" HeightRequest="30"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                             <Entry x:Name="PasswordEntry" Placeholder="Password" Text="{Binding CurrentUser.Password}" IsPassword="true" HeightRequest="44" HorizontalOptions="Center" WidthRequest="300">
+                                <Entry.Behaviors>
+                                   <local:PasswordValidator x:Name="PasswordValidator" />
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Image Source="{Binding Source={x:Reference PasswordValidator}, Path=IsValid,Converter={StaticResource BooleanToStringConverter}}" HeightRequest="30"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                             <Button x:Name="LoginButton" Text="Login" FontSize="18"  HorizontalOptions="Center" WidthRequest="300" 
+                                     BackgroundColor="#3dc054" Command="{Binding LoginCommand}" BorderRadius="10"/>
+                        </StackLayout>
+                    </StackLayout>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
-                     <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="true" HeightRequest="44" HorizontalOptions="Center" WidthRequest="300">
-                        <Entry.Behaviors>
-                           <local:PasswordValidator x:Name="PasswordValidator" />
-                        </Entry.Behaviors>
-                    </Entry>
-                    <Image Source="{Binding Source={x:Reference PasswordValidator}, Path=IsValid,Converter={StaticResource BooleanToStringConverter}}" HeightRequest="30"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
-                     <Button x:Name="LoginButton" Text="Login" FontSize="18"  HorizontalOptions="Center" WidthRequest="300" BackgroundColor="#3dc054" BorderRadius="10"/>
-                </StackLayout>
-            </StackLayout>
-        </StackLayout>
+                <AbsoluteLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional"
+                    BackgroundColor="#CCc0c0c0" IsVisible="{Binding PageIsBusy}">
+                    <AbsoluteLayout AbsoluteLayout.LayoutBounds="0.58,0.55,70,70" AbsoluteLayout.LayoutFlags="PositionProportional">
+                        <ActivityIndicator Color="Red" IsRunning="true" />
+                    </AbsoluteLayout>
+                    <AbsoluteLayout AbsoluteLayout.LayoutBounds="0.58,0.55,120,120" AbsoluteLayout.LayoutFlags="PositionProportional">
+                        <Label Text="Loading..."  TextColor="#3c763d" HorizontalOptions="Center"></Label>
+                    </AbsoluteLayout>
+                </AbsoluteLayout>
+            </AbsoluteLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

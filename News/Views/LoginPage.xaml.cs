@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using News.ViewModels;
 using Xamarin.Forms;
 
 namespace News.Views
@@ -10,6 +10,8 @@ namespace News.Views
         public LoginPage()
         {
             InitializeComponent();
+
+            BindingContext = new LoginViewModel();
         }
     }
 }

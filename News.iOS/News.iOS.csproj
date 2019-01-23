@@ -125,6 +125,7 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="Resources\error.png" />
     <BundleResource Include="Resources\success.png" />
+    <BundleResource Include="Resources\news_logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
